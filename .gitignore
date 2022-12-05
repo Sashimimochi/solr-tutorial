@@ -1,0 +1,4 @@
+mysql/data
+solr/logs/*
+!solr/logs/.gitkeep
+solr/lib
