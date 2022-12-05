@@ -28,4 +28,4 @@ curl "localhost:8080/solr/admin/collections?action=RELOAD&name=ldgourmet"
 
 # Full-Import data
 sleep 30
-curl "http://localhost:8080/solr/ldgourmet/dataimport?command=full-import&entity=train"
+curl "http://localhost:8080/solr/ldgourmet/dataimport?command=full-import&entity=tutorial"

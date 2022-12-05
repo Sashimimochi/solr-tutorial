@@ -23,8 +23,8 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=ldgourmet
-      - MYSQL_USER=solrtraining
-      - MYSQL_PASSWORD=solrtraining
+      - MYSQL_USER=solrtutorial
+      - MYSQL_PASSWORD=solrtutorial
     ports:
       - "3306:3306"
     volumes:
