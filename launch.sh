@@ -5,9 +5,6 @@ set -eu
 if [ ! -d "mysql/data/ldgourmet/" ]; then
     make csv
 fi
-if [ ! -e "solr/lib/mysql-connector-java-8.0.30.jar" ]; then
-    make driver
-fi
 
 docker-compose up -d
 while [ `curl -LI http://localhost:8080/solr -o /dev/null -w '%{http_code}\n' -s` -ne 200 ]; do
