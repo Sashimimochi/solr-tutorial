@@ -12,9 +12,7 @@ while [ `curl -LI http://localhost:8080/solr -o /dev/null -w '%{http_code}\n' -s
 done
 
 # Install DataImportHandler
-# [WARNING] DIH for Solr9 is not released Officially, so use personaly maked.
-# https://github.com/rohitbemax/dataimporthandler/pull/33
-REPO_URL="https://raw.githubusercontent.com/nightvixen/dataimporthandler/branch_9x/repo"
+REPO_URL="https://raw.githubusercontent.com/SearchScale/dataimporthandler/master/repo"
 docker-compose exec solr_node1 bin/solr package add-repo data-import-handler ${REPO_URL}
 docker-compose exec solr_node1 bin/solr package list-available
 docker-compose exec solr_node1 bin/solr package install data-import-handler

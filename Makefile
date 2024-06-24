@@ -1,5 +1,5 @@
 LDIR=./mysql/data/ldgourmet/
-LOG_DIR=./solr/logs/
+LOG_DIR=./solr/logs
 
 csv:
 	mkdir -p $(LDIR)

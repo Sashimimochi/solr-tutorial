@@ -3,7 +3,7 @@
         name="ldgourmet"
         type="JdbcDataSource"
         driver="org.mariadb.jdbc.Driver"
-        url="jdbc:mysql://mysql:3306/ldgourmet?useUnicode=true&amp;characterEncoding=UTF8&amp;useOldAliasMetaBehavior=true&amp;zeroDateTimeBehavior=convertToNull&amp;tinyInt1isBit=false"
+        url="jdbc:mariadb://mariadb:3306/ldgourmet?useUnicode=true&amp;characterEncoding=UTF8&amp;useOldAliasMetaBehavior=true&amp;zeroDateTimeBehavior=convertToNull&amp;tinyInt1isBit=false"
         user="solrtutorial"
         password="solrtutorial"
         batchSize="-1" />

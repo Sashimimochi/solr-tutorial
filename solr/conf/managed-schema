@@ -6,6 +6,7 @@
     <uniqueKey>id</uniqueKey>
 
     <field name="id" type="int" indexed="true" stored="true" required="true" />
+    <field name="name" type="string" indexed="true" stored="true" />
 
     <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0" />
     <fieldType name="plong" class="solr.LongPointField" docValues="true" />

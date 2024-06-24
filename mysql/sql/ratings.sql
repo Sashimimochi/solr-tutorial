@@ -14,4 +14,5 @@ CREATE TABLE IF NOT EXISTS `ratings` (
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
-LOAD DATA LOCAL INFILE '/data/ldgourmet/ratings.csv' IGNORE INTO TABLE ratings FIELDS TERMINATED BY ',' ENCLOSED BY '"';
+LOAD DATA LOCAL INFILE '/data/ldgourmet/ratings.csv' IGNORE INTO TABLE ratings FIELDS TERMINATED BY ',' ENCLOSED BY '"'
+IGNORE 1 ROWS;
