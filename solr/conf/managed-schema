@@ -8,8 +8,10 @@
     <field name="id" type="int" indexed="true" stored="true" required="true" />
     <field name="name" type="text_ja" indexed="true" stored="true" />
     <field name="name_romaji" type="text_ja_romaji" indexed="true" stored="true" />
+    <field name="name_romaji_s" type="text_ja_romaji_s" indexed="true" stored="true" />
 
     <copyField source="name" dest="name_romaji"/>
+    <copyField source="name" dest="name_romaji_s"/>
 
     <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0" />
     <fieldType name="plong" class="solr.LongPointField" docValues="true" />
@@ -72,6 +74,44 @@
             <filter name="japaneseReadingForm" useRomaji="true"/>
             <!-- tokenizeされた語を1ワードに戻す -->
             <filter name="shingle" outputUnigrams="false" minShingleSize="2" maxShingleSize="10"/>
+            <!-- 結合した際に付属した区切り文字を除去する -->
+            <filter name="patternReplace" pattern=" " replacement="" replace="all"/>
+        </analyzer>
+    </fieldType>
+    <fieldType name="text_ja_romaji_s" class="solr.TextField" positionIncrementGap="100">
+        <analyzer type="index">
+            <!-- unicodeの正規化 -->
+            <charFilter name="icuNormalizer2" form="nfkc"/>
+            <!-- 日本語の形態素解析 -->
+            <tokenizer name="japanese" mode="search"/>
+            <!-- 全角のローマ字を半角に半角カナを全角カナに変換する -->
+            <filter name="cjkWidth"/>
+            <!-- カタカナの表記揺れを補正する -->
+            <filter name="japaneseKatakanaStem"/>
+            <!-- ローマ字を小文字に変換する -->
+            <filter name="lowercase"/>
+            <!-- 読みを取得してローマ字に変換する -->
+            <filter name="japaneseReadingForm" useRomaji="true"/>
+            <!-- tokenizeされた語を1ワードに戻す -->
+            <filter name="shingle" outputUnigrams="true" minShingleSize="2" maxShingleSize="10"/>
+            <!-- 結合した際に付属した区切り文字を除去する -->
+            <filter name="patternReplace" pattern=" " replacement="" replace="all"/>
+        </analyzer>
+        <analyzer type="query">
+            <!-- unicodeの正規化 -->
+            <charFilter name="icuNormalizer2" form="nfkc"/>
+            <!-- 日本語の形態素解析 -->
+            <tokenizer name="japanese" mode="search"/>
+            <!-- 全角のローマ字を半角に半角カナを全角カナに変換する -->
+            <filter name="cjkWidth"/>
+            <!-- カタカナの表記揺れを補正する -->
+            <filter name="japaneseKatakanaStem"/>
+            <!-- ローマ字を小文字に変換する -->
+            <filter name="lowercase"/>
+            <!-- 読みを取得してローマ字に変換する -->
+            <filter name="japaneseReadingForm" useRomaji="true"/>
+            <!-- tokenizeされた語を1ワードに戻す -->
+            <filter name="shingle" outputUnigrams="true" minShingleSize="2" maxShingleSize="10"/>
             <!-- 結合した際に付属した区切り文字を除去する -->
             <filter name="patternReplace" pattern=" " replacement="" replace="all"/>
         </analyzer>
