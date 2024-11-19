@@ -6,9 +6,39 @@
     <uniqueKey>id</uniqueKey>
 
     <field name="id" type="int" indexed="true" stored="true" required="true" />
-    <field name="name" type="string" indexed="true" stored="true" />
+    <field name="name" type="text_ja_romaji" indexed="true" stored="true" />
 
     <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0" />
     <fieldType name="plong" class="solr.LongPointField" docValues="true" />
     <fieldType name="string" class="solr.StrField" sortMissingLast="true" docValues="true" />
+    <fieldType name="text_ja_romaji" class="solr.TextField" positionIncrementGap="100">
+        <analyzer type="index">
+            <!-- unicodeの正規化 -->
+            <charFilter name="icuNormalizer2" form="nfkc"/>
+            <!-- 日本語の形態素解析 -->
+            <tokenizer name="japanese" mode="search"/>
+            <!-- 全角のローマ字を半角に半角カナを全角カナに変換する -->
+            <filter name="cjkWidth"/>
+            <!-- カタカナの表記揺れを補正する -->
+            <filter name="japaneseKatakanaStem"/>
+            <!-- ローマ字を小文字に変換する -->
+            <filter name="lowercase"/>
+            <!-- 読みを取得してローマ字に変換する -->
+            <filter name="japaneseReadingForm" useRomaji="true"/>
+        </analyzer>
+        <analyzer type="query">
+            <!-- unicodeの正規化 -->
+            <charFilter name="icuNormalizer2" form="nfkc"/>
+            <!-- 日本語の形態素解析 -->
+            <tokenizer name="japanese" mode="search"/>
+            <!-- 全角のローマ字を半角に半角カナを全角カナに変換する -->
+            <filter name="cjkWidth"/>
+            <!-- カタカナの表記揺れを補正する -->
+            <filter name="japaneseKatakanaStem"/>
+            <!-- ローマ字を小文字に変換する -->
+            <filter name="lowercase"/>
+            <!-- 読みを取得してローマ字に変換する -->
+            <filter name="japaneseReadingForm" useRomaji="true"/>
+        </analyzer>
+    </fieldType>
 </schema>
