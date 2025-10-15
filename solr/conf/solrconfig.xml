@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config>
-    <luceneMatchVersion>9.4.0</luceneMatchVersion>
+    <luceneMatchVersion>9.7.0</luceneMatchVersion>
 
     <lib dir="${solr.install.dir:../../../..}/modules/analysis-extras/lib" regex=".*\.jar" />
     <lib dir="${solr.install.dir:../../../..}/modules/extraction/lib" regex=".*\.jar" />
