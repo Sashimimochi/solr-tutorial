@@ -5,8 +5,8 @@
 
 | Service   | Version |
 | :-------- | :------ |
-| SolrCloud | 9.4.0   |
-| Zookeeper | 3.6     |
+| SolrCloud | 9.7.0   |
+| Zookeeper | 3.9.3   |
 | MariaDB   | 10.5    |
 
 # Quick Start

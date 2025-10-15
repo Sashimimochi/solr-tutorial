@@ -1,14 +1,14 @@
-version: "3"
 services:
   solr_node1:
     container_name: solr_node1
-    image: solr:9.4.0
+    image: solr:9.7.0
     ports:
       - "8080:8983"
     volumes:
       - "./solr/solr.in.sh:/etc/default/solr.in.sh"
       - "./solr/conf:/opt/solr/server/solr/configsets/ldgourmet/conf"
       - "./solr/logs:/var/solr/logs"
+      - "./solr/lib:/var/solr/data/lib"
     command:
       - "-Denable.packages=true"
     restart: always
@@ -32,7 +32,7 @@ services:
       - "./mysql/sql/:/docker-entrypoint-initdb.d/"
       - "./mysql/conf.d:/etc/mysql/conf.d"
   zookeeper1:
-    image: zookeeper:3.6
+    image: zookeeper:3.9.3
     container_name: zookeeper1
     environment:
       ZOO_MY_ID: 1
