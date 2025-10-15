@@ -1,4 +1,3 @@
-version: "3"
 services:
   solr_node1:
     container_name: solr_node1
